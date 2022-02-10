@@ -23,3 +23,11 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Publish
+      run: dotnet publish -c Release -o website
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@2.3.1
+      with: 
+        Name: webapp
+        path: website/**
+        if-no-files-found: warn
